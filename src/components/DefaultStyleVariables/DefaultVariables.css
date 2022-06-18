@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #0070f3;
+  --dark-blue: #001534;
+  --black: #000;
+  --white: #fff;
+  --gray-2: #D9E0EC;
+  --gray-3: #707383;
+  --dark-gray: #69788F;
+  --green: #32DCA1;
+  --blue: #5142FC;
+  
+  --text-color: var(--dark-blue);
+
+  /*Default layout*/
+  --default-layout-header-height: 60px;
+  --default-layout-width: 1150px;
+  --default-layout-horizontal-spacer: 24px;
+  
+  --divider-border: 1px solid #D9E0EC;
+
+  --background-main: #e9e9e9;
+  --chart-background: var(--gray-2);
+  
+  --transition-default: all 0.2s ease-in-out;
+  
+}
