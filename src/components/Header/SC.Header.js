@@ -25,8 +25,14 @@ const SCHeader = styled.header`
     justify-content: flex-end;
     align-items: center;
     font-size: 1.8rem;
+    & .navItem{
+      padding: 0 1rem;
+      border-right: 1px solid var(--gray-3);
+      &:first-child{
+        border-left: 1px solid var(--gray-3);
+      }
+    }
     & .menuItem{
-      margin-left: 1rem;
       cursor: pointer;
       &:hover{
         color: var(--primary-color);

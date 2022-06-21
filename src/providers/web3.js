@@ -12,6 +12,7 @@ import authAPI from '~/api/authAPI'
 import axiosClient from '~/api/axiosClient'
 import userAPI from '~/api/userAPI'
 import {gold, marketplace, petty} from '~/contract'
+import {goldDex} from '~/contract/goldDex'
 import {resetUser, setUser} from '~/features/account/redux/accountSlice'
 import {toastMessage} from '~/features/common/redux/commonSlice'
 
@@ -27,6 +28,7 @@ const initData = {
   currentAccount: null,
   isInitiated: false,
   goldContract: null,
+  goldDexContract: null,
   pettyContract: null,
   marketplaceContract: null,
   signature: '',
@@ -61,6 +63,7 @@ export default function Web3Provider ({children}) {
         }
         // Load token, nft, marketplace
         const goldContract = new web3.eth.Contract(gold.ABI, gold.ADDRESS)
+        const goldDexContract = new web3.eth.Contract(goldDex.ABI, goldDex.ADDRESS)
         const pettyContract = new web3.eth.Contract(petty.ABI, petty.ADDRESS)
         const marketplaceContract = new web3.eth.Contract(marketplace.ABI,
           marketplace.ADDRESS)
@@ -79,6 +82,7 @@ export default function Web3Provider ({children}) {
           web3,
           currentAccount,
           goldContract,
+          goldDexContract,
           pettyContract,
           marketplaceContract,
         })

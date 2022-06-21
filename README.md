@@ -82,6 +82,7 @@ my-app
 ```shell
 
 Gold deployed to  0x49e3a80eff7BeE1b115E1c58A835d8cB992768ef
+Gold Dex deployed to  0x05ADb5791Ec5a061AC6B7776B3E627021a85AF8D
 Petty deployed to  0xb9401264F5C1bfe2c9E3c4aF83709Aa93B22097c
 Reserve deployed to  0x835B3C94eCdfc4cdb800b990e1f37f2827EF7c54
 Marketplace deployed to  0x4FAD032d378111fC345F38ff7e3203E461Fc11a4

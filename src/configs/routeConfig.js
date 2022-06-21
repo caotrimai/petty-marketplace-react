@@ -4,6 +4,8 @@ class RouteConfig {
     HOME: '/',
     ACCOUNT: '/account',
     CREATE_NFT: '/create-nft',
+    GOLD_DEX: '/gold-dex',
+    SELL_NFT: '/sell-nft',
   } 
 }
 
