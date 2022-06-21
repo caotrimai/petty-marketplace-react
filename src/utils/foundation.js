@@ -9,3 +9,9 @@ export const shortingName = (name) => {
   }
   return `${strings[0].slice(0, 1)}${strings[1].slice(0, 1)}`
 }
+
+export const handleNumberInputKeyPress = (event) => {
+  if (!/[0-9/.]/.test(event.key)) {
+    event.preventDefault()
+  }
+}

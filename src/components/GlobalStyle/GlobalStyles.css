@@ -27,3 +27,20 @@ a[href] {
   color: var(--text-color);
   text-decoration: none;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-loading {
+  animation: spin 1s linear infinite;
+}
+
+.icon-loading + span {
+  margin-left: 1rem;
+}

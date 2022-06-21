@@ -55,17 +55,6 @@ const SCGoldDex = styled.div`
         }
       }
 
-      & .icon-loading {
-        @keyframes spin {
-          0%   {transform: rotate(0);}
-          100% {transform: rotate(360deg);}
-        }
-        animation: spin 1s linear infinite;
-        &+span{
-          margin-left: 1rem;
-        }
-      }
-
       & input {
         height: 5rem;
         margin-top: .5rem;
