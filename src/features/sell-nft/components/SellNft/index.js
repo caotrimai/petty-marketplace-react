@@ -69,6 +69,7 @@ export default function SellNft () {
     pettyContract.methods.approve(marketplace.ADDRESS, selectedNft['nft_id'])
       .send({from: currentAccount})
       .then(() => {
+        dispatch(toastMessage('Approve success'))
         setState({approved: true})
       })
       .catch((err) => {
@@ -87,7 +88,7 @@ export default function SellNft () {
       web3.utils.toWei(price, 'ether'),
     ).send({from: currentAccount})
       .then(() => {
-        setState({selectedNft: {}})
+        setState({selectedNft: {}, approved: false})
         fetchNftList(currentAccount)
         dispatch(toastMessage('Post selling nft success'))
       })

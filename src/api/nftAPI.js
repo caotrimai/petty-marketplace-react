@@ -8,6 +8,9 @@ class NftAPI {
   // [GET]
   getByOwner = (owner) => `${endPoint}/get-by-owner?owner=${owner}`
   
+  // [GET]
+  getImage = (tokenId) => `${endPoint}/image?id=${tokenId}`
+  
 }
 
 const nftAPI = new NftAPI()

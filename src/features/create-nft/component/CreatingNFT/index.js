@@ -41,8 +41,11 @@ export default function CreatingNFT () {
       loading: false,
     },
     undefined)
-  const {loading} = state  
-  
+  const {loading} = state
+
+  const onReset = () => {
+    form.resetFields()
+  }
 
   const onFinish = async (values) => {
     setState({loading: true})
@@ -58,6 +61,7 @@ export default function CreatingNFT () {
     
     try {
       await axiosClient.post(nftAPI.create(), pet)
+      onReset()
       dispatch(toastMessage('Create pet nft success'))
     } catch (err) {
       console.log(err)
@@ -65,10 +69,6 @@ export default function CreatingNFT () {
     } finally {
       setState({loading: false})
     }
-  }
-
-  const onReset = () => {
-    form.resetFields()
   }
 
   const normFile = (e) => {

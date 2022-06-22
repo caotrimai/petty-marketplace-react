@@ -38,6 +38,15 @@ const SCOrderItem = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
+  
+  & .value {
+    font-weight: bold;
+  }
+  
+  & .price span {
+    color: yellow;
+    text-shadow: 0 2px 4px rgb(0 0 0 / 70%);
+  }
 
   & .name {
     font-size: 1.8rem;
