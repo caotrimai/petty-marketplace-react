@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const SCOrderItem = styled.div`
+const SCNftCard = styled.div`
   padding: 2rem;
   margin: 1.5rem;
   background: var(--white);
@@ -33,12 +33,11 @@ const SCOrderItem = styled.div`
   }
 
   & .infoRow {
-    padding-bottom: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  
+
   & .value {
     font-weight: bold;
   }
@@ -52,28 +51,6 @@ const SCOrderItem = styled.div`
       text-shadow: 0 2px 4px rgb(0 0 0 / 70%);
     }
   }
-
-  & .name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--blue);
-    }
-  }
-
-  & .net {
-    background-color: var(--blue);
-    color: var(--white);
-    padding: .5rem 1rem;
-    border-radius: 2rem;
-    font-size: 1.2rem;
-  }
-  
-  & .BuyModal{
-    border-radius: 2rem;
-  }
 `
 
-export default SCOrderItem
+export default SCNftCard

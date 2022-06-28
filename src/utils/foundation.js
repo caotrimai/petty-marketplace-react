@@ -7,11 +7,11 @@ export const shortingName = (name) => {
   if (strings.length === 1) {
     return strings[0].slice(0, 1)
   }
-  return `${strings[0].slice(0, 1)}${strings[1].slice(0, 1)}`
+  return `${strings[0].slice(0, 1)}${strings[1].slice(0, 1)}`.toUpperCase()
 }
 
 export const handleNumberInputKeyPress = (event) => {
-  if (!/[0-9/.]/.test(event.key)) {
+  if (!/[\d/.]/.test(event.key)) {
     event.preventDefault()
   }
 }

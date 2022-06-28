@@ -5,6 +5,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard/lib/Component'
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 import SCAccount from '~/features/account/components/Account/SCAccount'
+import MyNft from '~/features/account/components/MyNft'
 import NameInputForm from '~/features/account/components/NameInputForm'
 import {shortingAddress, shortingName} from '~/utils/foundation'
 
@@ -61,49 +62,52 @@ export default function Account () {
     {
       onEditName: false,
     },
-    undefined
+    undefined,
   )
   const {onEditName} = state
-  
+
   const hideNameInput = () => {
     setState({onEditName: false})
   }
-  
+
   return (
     <SCAccount className='Account'>
-      <AvatarStyle>
-        {shortingName(displayName)}
-      </AvatarStyle>
-      <InfoStyle className='info'>
-        <div className='title'>Account information</div>
-        {!onEditName && (
-          <div className='name'>
-            <span>{displayName}</span>
-            <FontAwesomeIcon
-              style={{
-                fontSize: '1.6rem',
-                padding: '1rem',
-                cursor: 'pointer',
-                color: 'var(--gray-3)',
-              }}
-              icon={faPen}
-              onClick={() => setState({onEditName: true})}
+      <div className='row'>
+        <AvatarStyle>
+          {shortingName(displayName)}
+        </AvatarStyle>
+        <InfoStyle className='info'>
+          <div className='title'>Account information</div>
+          {!onEditName && (
+            <div className='name'>
+              <span>{displayName}</span>
+              <FontAwesomeIcon
+                style={{
+                  fontSize: '1.6rem',
+                  padding: '1rem',
+                  cursor: 'pointer',
+                  color: 'var(--gray-3)',
+                }}
+                icon={faPen}
+                onClick={() => setState({onEditName: true})}
+              />
+            </div>
+          )}
+          {onEditName && (
+            <NameInputForm
+              onSaveSuccess={hideNameInput}
+              onSaveCancel={hideNameInput}
             />
+          )}
+          <div className='address'>
+            <span> {shortingAddress(walletAddress)}</span>
+            <CopyToClipboard text={walletAddress}>
+              <FontAwesomeIcon icon={faFileClipboard}/>
+            </CopyToClipboard>
           </div>
-        )}
-        {onEditName && (
-          <NameInputForm
-            onSaveSuccess={hideNameInput}
-            onSaveCancel={hideNameInput}
-          />
-        )}
-        <div className='address'>
-          <span> {shortingAddress(walletAddress)}</span>
-          <CopyToClipboard text={walletAddress}>
-            <FontAwesomeIcon icon={faFileClipboard}/>
-          </CopyToClipboard>
-        </div>
-      </InfoStyle>
+        </InfoStyle>
+      </div>
+      <MyNft/>
     </SCAccount>
   )
 }

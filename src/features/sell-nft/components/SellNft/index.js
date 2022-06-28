@@ -1,16 +1,15 @@
 import {faSpinner} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Input, Select} from 'antd'
-import {useCallback, useEffect, useReducer} from 'react'
+import {useReducer} from 'react'
 import {useDispatch} from 'react-redux'
-import axiosClient from '~/api/axiosClient'
-import nftAPI from '~/api/nftAPI'
 import {gold, marketplace} from '~/contract'
+import {useUserNftList} from '~/customhooks'
 import {toastMessage} from '~/features/common/redux/commonSlice'
 import NftCart from '~/features/gold-dex/components/NftCart'
+import {useWeb3} from '~/providers/web3'
 import {handleNumberInputKeyPress} from '~/utils/foundation'
 import SCSellNft from './SCSellNft'
-import {useWeb3} from '~/providers/web3'
 
 const {Option} = Select
 
@@ -27,24 +26,8 @@ export default function SellNft () {
       approved: false,
     }, undefined,
   )
-  const {nftList, selectedNft, price, loading, approved} = state
-
-  const fetchNftList = useCallback((currentAccount) => {
-    axiosClient.get(nftAPI.getByOwner(currentAccount))
-      .then((nftList) => {
-        setState({nftList})
-      })
-      .catch((err) => {
-        console.log(err)
-        dispatch(toastMessage(err))
-      })
-  },[dispatch])
-  
-  useEffect(() => {
-    if (currentAccount) {
-      fetchNftList(currentAccount)
-    }
-  }, [fetchNftList, currentAccount])
+  const {selectedNft, price, loading, approved} = state
+  const [nftList, reFetch] = useUserNftList(currentAccount)
 
   const handleChange = (id) => {
     if (id) {
@@ -89,7 +72,7 @@ export default function SellNft () {
     ).send({from: currentAccount})
       .then(() => {
         setState({selectedNft: {}, approved: false})
-        fetchNftList(currentAccount)
+        reFetch()
         dispatch(toastMessage('Post selling nft success'))
       })
       .catch(err => {
@@ -120,6 +103,7 @@ export default function SellNft () {
           placeholder='Select your NFT'
           style={{width: 300}}
           onChange={handleChange}
+          value={selectedNft['nft_id']}
         >
           {nftList.map((nft) => (
             <Option
@@ -141,7 +125,7 @@ export default function SellNft () {
             value={price}
           />
           <div className='button'>
-            <button disabled={loading} onClick={handleClickSubmit}>
+            <button className='submit-button' disabled={loading} onClick={handleClickSubmit}>
               {loading &&
               <FontAwesomeIcon className='icon-loading' icon={faSpinner}/>}
               <span>{approved ? 'Sell' : 'Approve'}</span>

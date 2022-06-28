@@ -6,7 +6,7 @@ class NftAPI {
   create = () => `${endPoint}/create`
   
   // [GET]
-  getByOwner = (owner) => `${endPoint}/get-by-owner?owner=${owner}`
+  getByOwner = (owner) => `${endPoint}/account/${owner}`
   
   // [GET]
   getImage = (tokenId) => `${endPoint}/image?id=${tokenId}`

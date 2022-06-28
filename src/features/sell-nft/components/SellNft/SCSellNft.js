@@ -51,31 +51,6 @@ const SCSellNft = styled.div`
   & .button {
     margin-top: 1rem;
     padding: 1rem 0;
-    & button {
-      width: 100%;
-      height: 4.8rem;
-      padding: 0 2.4rem;
-      position: relative;
-      align-items: center;
-      display: inline-flex;
-      justify-content: center;
-      font-family: inherit;
-      font-size: 1.6rem;
-      font-weight: 600;
-      line-height: 1;
-      outline: 0;
-      background-color: rgb(31, 199, 212);
-      color: white;
-      border: 0;
-      border-radius: 1.6rem;
-      box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
-      transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
   }
 `
 
