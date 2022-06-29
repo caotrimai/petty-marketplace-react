@@ -6,24 +6,25 @@ import orderAPI from '~/api/orderAPI'
 import {toastMessage} from '~/features/common/redux/commonSlice'
 import {useWeb3} from '~/providers/web3'
 
-export default function useUserSellingNftList() {
+export default function useUserSellingNftList () {
   const dispatch = useDispatch()
   const {currentAccount: userAddress} = useWeb3()
   const [sellingList, setSellingList] = useState([])
-  const [shouldReFetch, setReFetch] = useState('');
+  const [shouldReFetch, setReFetch] = useState('')
 
   const fetchNftList = useCallback((userAddress) => {
     axiosClient.get(orderAPI.getSellingOrders({seller: userAddress}))
       .then((orders) => {
-        const sellingList = orders.map(({nft, price}) => ({price, ...nft}))
+        const sellingList = orders.map(
+          ({nft, price, order_id: orderId}) => ({price, orderId, ...nft}))
         setSellingList(sellingList)
       })
       .catch((err) => {
         console.log(err)
         dispatch(toastMessage(err))
       })
-  },[dispatch])
-  
+  }, [dispatch])
+
   const reFetch = () => {
     setReFetch(uid())
   }
@@ -32,7 +33,7 @@ export default function useUserSellingNftList() {
     if (userAddress) {
       fetchNftList(userAddress)
     }
-  }, [userAddress, shouldReFetch])
-  
+  }, [userAddress, shouldReFetch, fetchNftList])
+
   return [sellingList, reFetch]
 }

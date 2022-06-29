@@ -31,7 +31,7 @@ export default function useUserNftList() {
     if (userAddress) {
       fetchNftList(userAddress)
     }
-  }, [userAddress, shouldReFetch])
+  }, [userAddress, shouldReFetch, fetchNftList])
   
   return [nftList, reFetch]
 }

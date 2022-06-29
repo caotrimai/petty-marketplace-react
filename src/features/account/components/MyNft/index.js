@@ -9,7 +9,7 @@ const Card = ({children}) => {
 
 export default function MyNft () {
   const [nftList] = useUserNftList()
-  const [sellingList] = useUserSellingNftList()
+  const [sellingList, reFetchSelling] = useUserSellingNftList()
  
 
   return (
@@ -29,7 +29,7 @@ export default function MyNft () {
         {sellingList.length > 0 &&
           sellingList.map(nft => (
             <Card key={nft['nft_id']}>
-              <NftCard nft={nft} selling/>
+              <NftCard nft={nft} selling onCancelOrderSuccess={reFetchSelling}/>
             </Card>
           ))}
       </Row>

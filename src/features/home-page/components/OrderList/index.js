@@ -1,6 +1,6 @@
 import {Row} from 'antd'
 import {useCallback, useEffect, useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import axiosClient from '~/api/axiosClient'
 import orderAPI from '~/api/orderAPI'
 import {toastMessage} from '~/features/common/redux/commonSlice'
@@ -10,6 +10,7 @@ import SCOrderList from './SC.OrderList'
 
 export default function OrderList () {
   const dispatch = useDispatch()
+  const shouldRefetch = useSelector(state => state.homePage.shouldRefetchOrders)
   const [orderList, setOrderList] = useState([])
 
   const fetchOrderList = useCallback(() => {
@@ -21,11 +22,11 @@ export default function OrderList () {
         console.log(err)
         dispatch(toastMessage(err))
       })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     fetchOrderList()
-  }, [fetchOrderList])
+  }, [fetchOrderList, shouldRefetch])
 
   return (
     <SCOrderList className='OrderList'>

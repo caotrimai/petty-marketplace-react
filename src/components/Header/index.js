@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import ConnectButton from '~/components/ConnectButton'
+import HeaderNotification from '~/components/HeaderNotification'
 import {routeConfig} from '~/configs'
 import SCHeader from './SC.Header'
 
@@ -17,22 +18,25 @@ export default function Header () {
 
   return (
     <SCHeader>
-      <div className='logo'>Petty</div>
-      <div className='menu'>
-        {links.map(({label, to, role}) => {
-          if (role && role !== user.role) return null
-          return (
-            <div className='navItem' key={to}>
-              <NavLink to={to}>
-                <div className='menuItem'>
-                  {label}
-                </div>
-              </NavLink>
-            </div>
-          )
-        })}
+      <div className='main'>
+        <div className='logo'>Petty</div>
+        <div className='menu'>
+          {links.map(({label, to, role}) => {
+            if (role && role !== user.role) return null
+            return (
+              <div className='navItem' key={to}>
+                <NavLink to={to}>
+                  <div className='menuItem'>
+                    {label}
+                  </div>
+                </NavLink>
+              </div>
+            )
+          })}
+        </div>
+        <ConnectButton/>
       </div>
-      <ConnectButton/>
+      <HeaderNotification/>
     </SCHeader>
   )
 }

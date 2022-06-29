@@ -13,6 +13,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/redux/counterSlice';
 import commonReducer from '../features/common/redux/commonSlice';
 import accountReducer from '../features/account/redux/accountSlice';
+import homePageReducer from '../features/home-page/redux/homePageSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   counter: counterReducer,
   common: commonReducer,
   account: accountReducer,
+  homePage: homePageReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

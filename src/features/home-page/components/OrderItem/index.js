@@ -15,7 +15,13 @@ import SCOrderItem from './SC.OrderItem'
 
 export default function OrderItem ({order}) {
   const dispatch = useDispatch()
-  const {web3, currentAccount, goldContract, marketplaceContract} = useWeb3()
+  const {
+    web3,
+    currentAccount,
+    goldContract,
+    marketplaceContract,
+    loadWalletAccount,
+  } = useWeb3()
   const [image, setImage] = useState('')
   const [approved, setApproved] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -88,13 +94,31 @@ export default function OrderItem ({order}) {
         setLoading(false)
       })
   }
-  
+
   const handleSubmit = () => {
     if (!approved) {
       approveToken()
       return
     }
     buyNft()
+  }
+
+  const handleClickBuy = () => {
+    if (currentAccount) {
+      showModal()
+    } else {
+      loadWalletAccount()
+    }
+  }
+  
+  const showButtonLabel = () => {
+    if (currentAccount) {
+      if(currentAccount === order.seller) {
+        return 'Selling'
+      }
+      return 'Buy'
+    }
+    return 'Login to buy'
   }
 
   return (
@@ -105,7 +129,7 @@ export default function OrderItem ({order}) {
         </div>
         <div className='infoRow'>
           <div className='label'>Order ID</div>
-          <div className='value'>{order['_id']}</div>
+          <div className='value'>{order['order_id']}</div>
         </div>
         <div className='infoRow'>
           <div className='label'>Token ID</div>
@@ -126,9 +150,9 @@ export default function OrderItem ({order}) {
             type='primary'
             shape='round'
             size='large'
-            onClick={showModal}
+            onClick={handleClickBuy}
           >
-            Buy
+            {showButtonLabel()}
           </Button>
         </div>
         <Modal

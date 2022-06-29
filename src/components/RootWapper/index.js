@@ -4,6 +4,7 @@ import {PersistGate} from 'redux-persist/integration/react'
 import {persistor, store} from '~/app/store'
 import DefaultStyleVariables from '~/components/DefaultStyleVariables'
 import GlobalStyles from '~/components/GlobalStyle'
+import SocketProvider from '~/providers/socket'
 import Toastify from '~/providers/toastify'
 import Web3Provider from '~/providers/web3'
 
@@ -15,7 +16,9 @@ export default function RootWrapper ({children}) {
           <GlobalStyles>
             <Toastify>
               <Web3Provider>
-                {children}
+                <SocketProvider>
+                  {children}
+                </SocketProvider>
               </Web3Provider>
             </Toastify>
           </GlobalStyles>

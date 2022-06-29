@@ -67,7 +67,7 @@ export default function GoldDex () {
       toValue = buyRatio * fromValue
     }
     setState({toValue})
-  }, [fromValue, buyRatio, sellFee])
+  }, [swapped, fromValue, buyRatio, sellFee])
 
   const handleInputKeyPress = (event) => {
     if (!/[0-9/.]/.test(event.key)) {
