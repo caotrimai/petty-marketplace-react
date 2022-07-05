@@ -30,6 +30,8 @@ export default function useUserNftList() {
   useEffect(() => {
     if (userAddress) {
       fetchNftList(userAddress)
+    } else {
+      setNftList([])
     }
   }, [userAddress, shouldReFetch, fetchNftList])
   

@@ -32,6 +32,8 @@ export default function useUserSellingNftList () {
   useEffect(() => {
     if (userAddress) {
       fetchNftList(userAddress)
+    } else {
+      setSellingList([])
     }
   }, [userAddress, shouldReFetch, fetchNftList])
 
